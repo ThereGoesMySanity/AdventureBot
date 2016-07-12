@@ -1,0 +1,7 @@
+descriptor:the blisteringly hot deserts of 
+Anubis	15	special
+Sphinx	10	special
+crocodile	5	50 20 5 [1,0,0,0] [1,1,1,1]
+snek	3	10 10 2 [1,0,0,0] [1,1,1,1]
+scorpion	2	5 10 2 [1,0,0,0] [1,1,1,1]
+swarm of beetles	2	5 10 1 [1,0,0,0] [0.1,2,0.5,1]

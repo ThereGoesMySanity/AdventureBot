@@ -1,0 +1,5 @@
+descriptor:{put a descriptor here, like "the cold wastes of "}
+final boss monster {tab} level {tab} special 
+					{"special" allows you to define the monster in its own file}
+lame normal monster {tab} level {tab} hp xp damage_per_attack [physical%,fire%,lightning%,magic%] [physical%,fire%,lightning%,magic%]
+																			{damage %, these should add up to 1} {resistance %, these can be w/e}
