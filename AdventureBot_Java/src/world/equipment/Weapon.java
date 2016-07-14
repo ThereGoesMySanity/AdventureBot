@@ -1,39 +1,40 @@
 package world.equipment;
 
 import world.beings.Being;
-import world.beings.Player;
+import world.beings.Buff;
 
 public class Weapon extends Equipment{
 	String name;
-	int dmgMult, dmgPlus;
-	public Weapon(int damageMult, int damagePlus, String name){
-		dmgMult = damageMult;
-		dmgPlus = damagePlus;
+	Buff buff;
+	public Weapon(float damageMult, int damagePlus, float[] dist, String name){
+		buff = new Buff(damageMult, damagePlus, new float[]{1,0,0,0});
 		this.name = name;
 	}
+	public Weapon(float damageMult, int damagePlus, String name){
+		this(damageMult, damagePlus, new float[]{1,0,0,0}, name);
+	}
 	@Override
-	public void onEquip(Player self) {
+	public void onEquip() {
+		player.addBuff(buff);
 	}
 
 	@Override
-	public void onRemove(Player self) {
+	public void onRemove() {
+		player.removeBuff(buff);
 	}
 
 	@Override
-	public void onAttack(Player self, Being other) {
-		// TODO Auto-generated method stub
+	public void onAttack(Being other) {
 		
 	}
 
 	@Override
-	public void onDefend(Player self, Being other) {
-		// TODO Auto-generated method stub
+	public void onDefend(Being other) {
 		
 	}
 
 	@Override
-	public void onTick(Player self) {
-		// TODO Auto-generated method stub
+	public void onTick() {
 		
 	}
 

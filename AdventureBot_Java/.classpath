@@ -3,12 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/home/will/Downloads/JDA-withDependencies-2.1.1_300.jar" sourcepath="/home/will/Downloads/JDA-2.1.1_300-sources.jar">
+	<classpathentry kind="lib" path="Resources/JDA-2.1.3_327-javadoc.jar"/>
+	<classpathentry kind="lib" path="Resources/JDA-withDependencies-2.1.3_327.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/home/will/Downloads/JDA-2.1.1_300-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/AdventureBot_Java/Resources/JDA-2.1.3_327-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/will/Downloads/JDA-2.1.1_300-javadoc.jar"/>
-	<classpathentry kind="lib" path="/home/will/Downloads/JDA-2.1.1_300-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

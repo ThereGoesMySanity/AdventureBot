@@ -45,6 +45,10 @@ public class Main extends ListenerAdapter{
     				n, event.getAuthor().getId(), 
     				event.getTextChannel().getName());
     	}
-    	p.attack(p.getBiome().getRandomEnemy());
+    	if(event.getMessage().getRawContent().charAt(0)%10>7){
+    		p.attack(p.getBiome().getRandomEnemy());
+    	}else{
+    		p.castSpell(p.getBiome().getRandomEnemy(), p.getRandomSpell());
+    	}
     }
 }

@@ -1,5 +1,6 @@
 package world.beings;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -11,7 +12,10 @@ public class Being {
 
 	protected int attack;
 	protected float[] attackTypes;
+	public enum Type {PHYSICAL, FIRE, LIGHTNING, MAGIC}
 
+	ArrayList<Buff> buffs;
+	ArrayList<ArmorBuff> armorBuffs;
 	protected float[] resist;
 	HashMap<Being, Integer> damageDone;
 	
@@ -58,17 +62,20 @@ public class Being {
 			x.giveXP(damageDone.get(x)/i);
 	}
 	
-	public void addResist(float[] rs){
-		for(int i = 0; i < rs.length; i++){
-			resist[i] *= rs[i];
-		}
-	}
-	
-	public void setResist(int i, float r){
-		resist[i] = r;
-	}
 	public String getAttackString(Being other){
 		return "A " + type + " atttacks "+other.name;
+	}
+	public void addBuff(Buff b){
+		buffs.add(b);
+	}
+	public void addBuff(ArmorBuff a){
+		armorBuffs.add(a);
+	}
+	public void removeBuff(Buff b){
+		buffs.remove(b);
+	}
+	public void removeBuff(ArmorBuff a){
+		armorBuffs.remove(a);
 	}
 	
 	public String getName() {

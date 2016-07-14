@@ -3,9 +3,18 @@ package world.equipment;
 import world.beings.*;
 
 public abstract class Equipment {
-	public abstract void onEquip(Player self);
-	public abstract void onRemove(Player self);
-	public abstract void onAttack(Player self, Being other);
-	public abstract void onDefend(Player self, Being other);
-	public abstract void onTick(Player self);
+	Player player;
+	public abstract void onEquip();
+	public abstract void onRemove();
+	public abstract void onAttack(Being other);
+	public abstract void onDefend(Being other);
+	public abstract void onTick();
+	public void equip(Player p){
+		player = p;
+		onEquip();
+	}
+	public void unequip(){
+		onRemove();
+		player = null;
+	}
 }

@@ -15,15 +15,6 @@ public class Player extends Being{
 	Weapon weapon;
 	ArrayList<Spell> spells;
 	ArrayList<Equipment> stored;
-
-
-	public Biome getBiome() {
-		return biome;
-	}
-	public void setBiome(Biome biome) {
-		biome.addPlayer(this);
-		this.biome = biome;
-	}
 	int level;
 	int xp, xp_total;
 	HashMap<Stats, Integer> stat;
@@ -38,22 +29,36 @@ public class Player extends Being{
 		this.id = id;
 		armor = new HashMap<Armor.ArmorType, Armor>();
 		stored = new ArrayList<Equipment>();
+		buffs = new ArrayList<Buff>();
+		armorBuffs = new ArrayList<ArmorBuff>();
 		hasAttacked = false;
 	}
 	@Override
 	public void update(){
 		hasAttacked = false;
+		weapon.onTick();
 		for(Armor a : armor.values()){
-			a.onTick(this);
+			a.onTick();
+		}
+		for(Spell s : spells){
+			s.onTick();
 		}
 	}
 	@Override
 	public void attack(Being other){
 		hasAttacked = true;
 		for(Armor a : armor.values()){
-			a.onAttack(this, other);
+			a.onAttack(other);
 		}
 		super.attack(other);
+	}
+	public void castSpell(Being other, Spell s){
+		if(spells.contains(s)){
+			s.cast(other);
+		}
+	}
+	public Spell getRandomSpell(){
+		return spells.get((int) (Math.random()*spells.size()));
 	}
 	@Override
 	public void giveXP(int xp){
@@ -67,7 +72,7 @@ public class Player extends Being{
 	@Override
 	public void damage(int damage, float[] damageTypes, Being other){
 		for(Armor a : armor.values()){
-			a.onDefend(this, other);
+			a.onDefend(other);
 		}
 		super.damage(damage, damageTypes, other);
 	}
@@ -83,13 +88,17 @@ public class Player extends Being{
 			if(armor.get(a.type)!=null){
 				Armor ar = armor.get(a.type);
 				stored.add(ar);
-				ar.onRemove(this);
+				ar.onRemove();
 			}
 			armor.put(a.type, a);
-			a.onEquip(this);
 		}else if (e instanceof Weapon){
-			
+			if(weapon != null){
+				weapon.unequip();
+				stored.add(weapon);
+			}
+			weapon = (Weapon)e;
 		}
+		e.equip(this);
 	}
 	public int getLevel() {
 		return level;
@@ -114,4 +123,13 @@ public class Player extends Being{
 	public void setStat(Stats s, Integer i) {
 		stat.put(s, i);
 	}
+
+	public Biome getBiome() {
+		return biome;
+	}
+	public void setBiome(Biome biome) {
+		biome.addPlayer(this);
+		this.biome = biome;
+	}
+	
 }
